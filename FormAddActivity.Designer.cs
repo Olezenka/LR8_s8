@@ -60,6 +60,9 @@
             this.buttonBack = new System.Windows.Forms.Button();
             this.buttonAddActivity = new System.Windows.Forms.Button();
             this.buttonAddJuri = new System.Windows.Forms.Button();
+            this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.userBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             dayLabel = new System.Windows.Forms.Label();
             eventPlanIDLabel = new System.Windows.Forms.Label();
             groupsJuryLabel = new System.Windows.Forms.Label();
@@ -70,6 +73,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.activityBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.activityBindingNavigator)).BeginInit();
             this.activityBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // activityBindingSource
@@ -103,7 +109,7 @@
             this.activityBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.activityBindingNavigator.Name = "activityBindingNavigator";
             this.activityBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.activityBindingNavigator.Size = new System.Drawing.Size(1130, 42);
+            this.activityBindingNavigator.Size = new System.Drawing.Size(1130, 50);
             this.activityBindingNavigator.TabIndex = 0;
             this.activityBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -181,7 +187,7 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(46, 36);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(46, 44);
             this.bindingNavigatorAddNewItem.Text = "Добавить";
             // 
             // bindingNavigatorDeleteItem
@@ -274,14 +280,19 @@
             // 
             // eventPlanIDComboBox
             // 
+            this.eventPlanIDComboBox.DataSource = this.eventBindingSource;
+            this.eventPlanIDComboBox.DisplayMember = "Title";
+            this.eventPlanIDComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.eventPlanIDComboBox.FormattingEnabled = true;
             this.eventPlanIDComboBox.Location = new System.Drawing.Point(420, 270);
             this.eventPlanIDComboBox.Name = "eventPlanIDComboBox";
             this.eventPlanIDComboBox.Size = new System.Drawing.Size(500, 33);
             this.eventPlanIDComboBox.TabIndex = 15;
+            this.eventPlanIDComboBox.ValueMember = "ID";
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dateTimePicker1.Location = new System.Drawing.Point(420, 449);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(500, 31);
@@ -297,19 +308,27 @@
             // 
             // comboBoxModerator
             // 
+            this.comboBoxModerator.DataSource = this.userBindingSource;
+            this.comboBoxModerator.DisplayMember = "Surname";
+            this.comboBoxModerator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxModerator.FormattingEnabled = true;
             this.comboBoxModerator.Location = new System.Drawing.Point(420, 535);
             this.comboBoxModerator.Name = "comboBoxModerator";
             this.comboBoxModerator.Size = new System.Drawing.Size(500, 33);
             this.comboBoxModerator.TabIndex = 18;
+            this.comboBoxModerator.ValueMember = "ID";
             // 
             // comboBoxJuri
             // 
+            this.comboBoxJuri.DataSource = this.userBindingSource2;
+            this.comboBoxJuri.DisplayMember = "Surname";
+            this.comboBoxJuri.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxJuri.FormattingEnabled = true;
             this.comboBoxJuri.Location = new System.Drawing.Point(420, 632);
             this.comboBoxJuri.Name = "comboBoxJuri";
             this.comboBoxJuri.Size = new System.Drawing.Size(500, 33);
             this.comboBoxJuri.TabIndex = 19;
+            this.comboBoxJuri.ValueMember = "ID";
             // 
             // buttonBack
             // 
@@ -338,6 +357,7 @@
             this.buttonAddActivity.TabIndex = 22;
             this.buttonAddActivity.Text = "Добавить новую активность";
             this.buttonAddActivity.UseVisualStyleBackColor = true;
+            this.buttonAddActivity.Click += new System.EventHandler(this.buttonAddActivity_Click);
             // 
             // buttonAddJuri
             // 
@@ -347,6 +367,19 @@
             this.buttonAddJuri.TabIndex = 23;
             this.buttonAddJuri.Text = "Добавить";
             this.buttonAddJuri.UseVisualStyleBackColor = true;
+            // 
+            // eventBindingSource
+            // 
+            this.eventBindingSource.DataSource = typeof(LR8_s8.DBCon.Event);
+            this.eventBindingSource.CurrentChanged += new System.EventHandler(this.bindingSource1_CurrentChanged);
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(LR8_s8.DBCon.User);
+            // 
+            // userBindingSource2
+            // 
+            this.userBindingSource2.DataSource = typeof(LR8_s8.DBCon.User);
             // 
             // FormAddActivity
             // 
@@ -372,10 +405,14 @@
             this.Controls.Add(this.activityBindingNavigator);
             this.Name = "FormAddActivity";
             this.Text = "FormAddActivity";
+            this.Load += new System.EventHandler(this.FormAddActivity_Load);
             ((System.ComponentModel.ISupportInitialize)(this.activityBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.activityBindingNavigator)).EndInit();
             this.activityBindingNavigator.ResumeLayout(false);
             this.activityBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eventBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -406,5 +443,8 @@
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Button buttonAddActivity;
         private System.Windows.Forms.Button buttonAddJuri;
+        private System.Windows.Forms.BindingSource eventBindingSource;
+        private System.Windows.Forms.BindingSource userBindingSource;
+        private System.Windows.Forms.BindingSource userBindingSource2;
     }
 }
