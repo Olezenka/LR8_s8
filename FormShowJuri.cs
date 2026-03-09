@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LR8_s8
+namespace LR8_s8.DBCon
 {
-    public partial class Form1 : Form
+    public partial class FormShowJuri : Form
     {
-        public Form1()
+        public FormShowJuri()
         {
             InitializeComponent();
         }
