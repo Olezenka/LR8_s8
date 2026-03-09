@@ -47,6 +47,7 @@
             this.buttonShow = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.activityBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,7 +55,6 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.activityBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.activityBindingNavigator)).BeginInit();
             this.activityBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.activityDataGridView)).BeginInit();
@@ -208,6 +208,7 @@
             this.activityDataGridView.RowTemplate.Height = 33;
             this.activityDataGridView.Size = new System.Drawing.Size(1062, 521);
             this.activityDataGridView.TabIndex = 1;
+            this.activityDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.activityDataGridView_CellContentClick);
             // 
             // buttonShow
             // 
@@ -243,6 +244,10 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Таблица активностей";
             // 
+            // activityBindingSource
+            // 
+            this.activityBindingSource.DataSource = typeof(LR8_s8.DBCon.Activity);
+            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "ID";
@@ -253,11 +258,12 @@
             // 
             // dataGridViewTextBoxColumn2
             // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.dataGridViewTextBoxColumn2.DataPropertyName = "Title";
             this.dataGridViewTextBoxColumn2.HeaderText = "Title";
             this.dataGridViewTextBoxColumn2.MinimumWidth = 10;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 200;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -299,10 +305,6 @@
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.Width = 200;
             // 
-            // activityBindingSource
-            // 
-            this.activityBindingSource.DataSource = typeof(LR8_s8.DBCon.Activity);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -343,6 +345,9 @@
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton activityBindingNavigatorSaveItem;
         private System.Windows.Forms.DataGridView activityDataGridView;
+        private System.Windows.Forms.Button buttonShow;
+        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -350,9 +355,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.Button buttonShow;
-        private System.Windows.Forms.Button buttonAdd;
-        private System.Windows.Forms.Label label1;
     }
 }
 

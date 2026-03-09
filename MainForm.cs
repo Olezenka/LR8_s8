@@ -40,5 +40,10 @@ namespace LR8_s8
             activity.ShowDialog();
             activityBindingSource.DataSource = DBConst.model.Activity.ToList();
         }
+
+        private void activityDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
