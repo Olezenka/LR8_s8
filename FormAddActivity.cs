@@ -77,5 +77,22 @@ namespace LR8_s8.DBCon
             }
             Close();
         }
+
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void buttonAddJuri_Click(object sender, EventArgs e)
+        {
+            int id = (int)comboBoxJuri.SelectedValue;
+            if (!Id_Juri.Contains(id))
+            {
+                Id_Juri.Add(id);
+                MessageBox.Show($"Пользователь с ID - {comboBoxJuri.SelectedValue} добавле!");
+                return;
+            }
+            MessageBox.Show("Нельзя добавить ещё одного и того же Жюри");
+        }
     }
 }
